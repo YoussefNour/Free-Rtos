@@ -1,0 +1,13 @@
+--cpu Cortex-M3
+".\output\list.o"
+".\output\queue.o"
+".\output\tasks.o"
+".\output\heap_1.o"
+".\output\port.o"
+".\output\main.o"
+".\output\basic_io.o"
+".\output\startup_mps_cm3.o"
+--library_type=microlib --strict --scatter ".\Output\Example006.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Example006.map" -o .\Output\Example006.axf

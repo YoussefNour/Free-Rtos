@@ -1,0 +1,87 @@
+Dependencies for Project 'Example006', Target 'Source': (DO NOT MODIFY !)
+CompilerVersion: 5060750::V5.06 update 6 (build 750)::ARMCC
+F (..\..\FreeRTOS-Source\list.c)(0x5E4656E2)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I ..\Example006 -I ..\..\FreeRTOS-Source\include -I ..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3 -I ..\..\FreeRTOS-Source\demo_code-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="529"-o .\output\list.o --omf_browse .\output\list.crf --depend .\output\list.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5D9B267A)
+I (..\..\FreeRTOS-Source\include\FreeRTOS.h)(0x5E4657A4)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5D9B2678)
+I (..\..\FreeRTOS-Source\include\projdefs.h)(0x5E4657AA)
+I (..\Example006\FreeRTOSConfig.h)(0x5E46573E)
+I (..\..\FreeRTOS-Source\include\portable.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3\portmacro.h)(0x5E465984)
+I (..\..\FreeRTOS-Source\include\mpu_wrappers.h)(0x5E4657A8)
+I (..\..\FreeRTOS-Source\include\list.h)(0x5E4657A6)
+F (..\..\FreeRTOS-Source\queue.c)(0x5E4656E4)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I ..\Example006 -I ..\..\FreeRTOS-Source\include -I ..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3 -I ..\..\FreeRTOS-Source\demo_code-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="529"-o .\output\queue.o --omf_browse .\output\queue.crf --depend .\output\queue.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5D9B267A)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9B2678)
+I (..\..\FreeRTOS-Source\include\FreeRTOS.h)(0x5E4657A4)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5D9B2678)
+I (..\..\FreeRTOS-Source\include\projdefs.h)(0x5E4657AA)
+I (..\Example006\FreeRTOSConfig.h)(0x5E46573E)
+I (..\..\FreeRTOS-Source\include\portable.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3\portmacro.h)(0x5E465984)
+I (..\..\FreeRTOS-Source\include\mpu_wrappers.h)(0x5E4657A8)
+I (..\..\FreeRTOS-Source\include\task.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\include\list.h)(0x5E4657A6)
+I (..\..\FreeRTOS-Source\include\croutine.h)(0x5E4657A4)
+F (..\..\FreeRTOS-Source\tasks.c)(0x5E4656E0)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I ..\Example006 -I ..\..\FreeRTOS-Source\include -I ..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3 -I ..\..\FreeRTOS-Source\demo_code-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="529"-o .\output\tasks.o --omf_browse .\output\tasks.crf --depend .\output\tasks.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9B267A)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5D9B267A)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9B2678)
+I (..\..\FreeRTOS-Source\include\FreeRTOS.h)(0x5E4657A4)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5D9B2678)
+I (..\..\FreeRTOS-Source\include\projdefs.h)(0x5E4657AA)
+I (..\Example006\FreeRTOSConfig.h)(0x5E46573E)
+I (..\..\FreeRTOS-Source\include\portable.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3\portmacro.h)(0x5E465984)
+I (..\..\FreeRTOS-Source\include\mpu_wrappers.h)(0x5E4657A8)
+I (..\..\FreeRTOS-Source\include\task.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\include\list.h)(0x5E4657A6)
+I (..\..\FreeRTOS-Source\include\StackMacros.h)(0x5E4657AA)
+F (..\..\FreeRTOS-Source\portable\MemMang\heap_1.c)(0x5E465888)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I ..\Example006 -I ..\..\FreeRTOS-Source\include -I ..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3 -I ..\..\FreeRTOS-Source\demo_code-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="529"-o .\output\heap_1.o --omf_browse .\output\heap_1.crf --depend .\output\heap_1.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5D9B267A)
+I (..\..\FreeRTOS-Source\include\FreeRTOS.h)(0x5E4657A4)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5D9B2678)
+I (..\..\FreeRTOS-Source\include\projdefs.h)(0x5E4657AA)
+I (..\Example006\FreeRTOSConfig.h)(0x5E46573E)
+I (..\..\FreeRTOS-Source\include\portable.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3\portmacro.h)(0x5E465984)
+I (..\..\FreeRTOS-Source\include\mpu_wrappers.h)(0x5E4657A8)
+I (..\..\FreeRTOS-Source\include\task.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\include\list.h)(0x5E4657A6)
+F (..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3\port.c)(0x5E465984)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I ..\Example006 -I ..\..\FreeRTOS-Source\include -I ..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3 -I ..\..\FreeRTOS-Source\demo_code-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="529"-o .\output\port.o --omf_browse .\output\port.crf --depend .\output\port.d)
+I (..\..\FreeRTOS-Source\include\FreeRTOS.h)(0x5E4657A4)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5D9B2678)
+I (..\..\FreeRTOS-Source\include\projdefs.h)(0x5E4657AA)
+I (..\Example006\FreeRTOSConfig.h)(0x5E46573E)
+I (..\..\FreeRTOS-Source\include\portable.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3\portmacro.h)(0x5E465984)
+I (..\..\FreeRTOS-Source\include\mpu_wrappers.h)(0x5E4657A8)
+I (..\..\FreeRTOS-Source\include\task.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\include\list.h)(0x5E4657A6)
+F (.\main.c)(0x5EB01B94)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I ..\Example006 -I ..\..\FreeRTOS-Source\include -I ..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3 -I ..\..\FreeRTOS-Source\demo_code-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="529"-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+I (..\..\FreeRTOS-Source\include\FreeRTOS.h)(0x5E4657A4)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5D9B2678)
+I (..\..\FreeRTOS-Source\include\projdefs.h)(0x5E4657AA)
+I (..\Example006\FreeRTOSConfig.h)(0x5E46573E)
+I (..\..\FreeRTOS-Source\include\portable.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3\portmacro.h)(0x5E465984)
+I (..\..\FreeRTOS-Source\include\mpu_wrappers.h)(0x5E4657A8)
+I (..\..\FreeRTOS-Source\include\task.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\include\list.h)(0x5E4657A6)
+I (hw_types.h)(0x5E465742)
+I (hw_memmap.h)(0x5E46573E)
+I (hw_sysctl.h)(0x5E465742)
+I (..\..\FreeRTOS-Source\demo_code\basic_io.h)(0x5E4657EC)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5D9B267A)
+F (..\..\FreeRTOS-Source\demo_code\basic_io.c)(0x5E4657EC)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I ..\Example006 -I ..\..\FreeRTOS-Source\include -I ..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3 -I ..\..\FreeRTOS-Source\demo_code-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="529"-o .\output\basic_io.o --omf_browse .\output\basic_io.crf --depend .\output\basic_io.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9B267A)
+I (..\..\FreeRTOS-Source\include\FreeRTOS.h)(0x5E4657A4)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5D9B2678)
+I (..\..\FreeRTOS-Source\include\projdefs.h)(0x5E4657AA)
+I (..\Example006\FreeRTOSConfig.h)(0x5E46573E)
+I (..\..\FreeRTOS-Source\include\portable.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3\portmacro.h)(0x5E465984)
+I (..\..\FreeRTOS-Source\include\mpu_wrappers.h)(0x5E4657A8)
+I (..\..\FreeRTOS-Source\include\task.h)(0x5E4657AA)
+I (..\..\FreeRTOS-Source\include\list.h)(0x5E4657A6)
+F (.\startup_MPS_CM3.s)(0x5E465746)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary--pd "__UVISION_VERSION SETA 529"--list .\startup_mps_cm3.lst --xref -o .\output\startup_mps_cm3.o --depend .\output\startup_mps_cm3.d)

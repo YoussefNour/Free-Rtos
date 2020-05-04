@@ -1,1 +1,2 @@
-# Free-Rtos
+# MICRO-RTOS
+Implementation of Rtos scheduler
