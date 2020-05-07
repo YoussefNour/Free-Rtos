@@ -34,7 +34,8 @@ void quickSort(struct task arr[], int low, int high);
 void printTasks(struct task tasks[]);
 void prioritize(struct task tasks[]);
 void CreateTasks(struct task tasks[]);
-static void VTask(void *p);
+static void VTask(struct task* p);
+void vApplicationIdleHook(void);
 
 const char *pcTextForTask1 = "Continuous task 1 running\n";
 
@@ -95,8 +96,12 @@ void InitTasks(int mode){
 			tasks[ul].Tc = tasks[ul].Tc*tst;
 			vPrintStringAndNumber("Tc:",tasks[ul].Tc);
 			printf("Tp: %d ",tasks[ul].Tp);
-		
 		}
+}
+
+void vApplicationIdleHook(){
+	vPrintString("idle\n");
+	for(int i =0 ;i<1000;i++ );
 }
 
 int admit()
@@ -175,19 +180,20 @@ void prioritize(struct task tasks[]){
 	printf("\n\nTasks have been prioritized\n");
 }
 
-static void VTask(void *p){
-	char *Taskname = (char *)p;
+static void VTask(struct task* p){
+	char *Taskname = (char *)p->name;
 	portTickType xLastWakeTime;
 	xLastWakeTime = xTaskGetTickCount();
 	for(;;){
 		vPrintString(Taskname);
-		vTaskDelayUntil(&xLastWakeTime,250/ portTICK_RATE_MS);
+		vPrintString(" is running\n");
+		vTaskDelayUntil(&xLastWakeTime,p->Tp/ portTICK_RATE_MS);
 	}
 }
 
 void CreateTasks(struct task tasks[]){
-	for(int ul=0;ul<n;ul++){
-		xTaskCreate(VTask,tasks[ul].name,240,(void*)&tasks[ul].name,tasks[ul].P,NULL);
+	for(int ul=n-1;ul>=0;ul--){
+		xTaskCreate(VTask,tasks[ul].name,50,&tasks[ul],tasks[ul].P,NULL);
 	}
 }
 
