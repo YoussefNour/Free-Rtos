@@ -21,6 +21,7 @@ struct task{
 	int Ta;
 	int Tp;
 	int Tc;
+	int P;
 };
 
 volatile unsigned int n;
@@ -30,7 +31,10 @@ int admit(void);
 void swap(struct task* a, struct task* b);
 int partition (struct task arr[], int low, int high);
 void quickSort(struct task arr[], int low, int high);
-
+void printTasks(struct task tasks[]);
+void prioritize(struct task tasks[]);
+void CreateTasks(struct task tasks[]);
+static void VTask(void *p);
 
 const char *pcTextForTask1 = "Continuous task 1 running\n";
 
@@ -39,7 +43,12 @@ int main( void )
 	srand(256); //time(null)
 	InitTasks(1);
 	vPrintStringAndNumber("\n\nschedulability:",admit());
-	//xTaskCreate( vContinuousProcessingTask, "Task 1", 240, (void*)pcTextForTask1, 1, NULL );
+	quickSort(tasks,0,n-1);
+	printf("\nfinished sorting");
+	printTasks(tasks);
+	prioritize(tasks);
+	printTasks(tasks);
+	CreateTasks(tasks);
 	vTaskStartScheduler();
 	for( ;; );
 }
@@ -140,7 +149,45 @@ void quickSort(struct task arr[], int low, int high)
         // partition and after partition 
         quickSort(arr, low, pi - 1); 
         quickSort(arr, pi + 1, high); 
-    } 
+    }
 } 
 
+void printTasks(struct task tasks[]){
+	for(int ul =0;ul<n;ul++){
+		printf("\n%s \n",tasks[ul].name);
+		vPrintStringAndNumber("TA:",tasks[ul].Ta);
+		vPrintStringAndNumber("Tc:",tasks[ul].Tc);
+		printf("Tp: %d ",tasks[ul].Tp);
+		printf("\nPriority: %d\n",tasks[ul].P);
+	}
+}
+
+void prioritize(struct task tasks[]){
+	int count=1;
+	for(int ul=n-1;ul>0;ul--){
+		if(tasks[ul].Tp>tasks[ul-1].Tp){
+			tasks[ul].P=count++;
+		}else{
+			tasks[ul].P=count;
+		}
+	}
+	tasks[0].P = count;
+	printf("\n\nTasks have been prioritized\n");
+}
+
+static void VTask(void *p){
+	char *Taskname = (char *)p;
+	portTickType xLastWakeTime;
+	xLastWakeTime = xTaskGetTickCount();
+	for(;;){
+		vPrintString(Taskname);
+		vTaskDelayUntil(&xLastWakeTime,250/ portTICK_RATE_MS);
+	}
+}
+
+void CreateTasks(struct task tasks[]){
+	for(int ul=0;ul<n;ul++){
+		xTaskCreate(VTask,tasks[ul].name,240,(void*)&tasks[ul].name,tasks[ul].P,NULL);
+	}
+}
 
