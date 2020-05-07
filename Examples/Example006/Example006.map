@@ -31,8 +31,11 @@ Section Cross References
     main.o(.text) refers to f2d.o(.text) for __aeabi_f2d
     main.o(.text) refers to cdcmple.o(.text) for __aeabi_cdcmple
     main.o(.text) refers to rand.o(.text) for rand
+    main.o(.text) refers to printf3.o(i.__0sprintf$3) for __2sprintf
+    main.o(.text) refers to printf3.o(i.__0printf$3) for __2printf
     main.o(.text) refers to basic_io.o(.text) for vPrintStringAndNumber
     main.o(.text) refers to tasks.o(.text) for vTaskStartScheduler
+    main.o(.text) refers to memcpya.o(.text) for __aeabi_memcpy4
     main.o(.text) refers to main.o(.bss) for tasks
     main.o(.text) refers to main.o(.data) for n
     main.o(.data) refers to main.o(.conststring) for .conststring
@@ -338,35 +341,35 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      192  startup_mps_cm3.o(RESET)
-    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/stdlib/rand.c           0x00000000   Number         0  rand.o ABSOLUTE
@@ -379,8 +382,8 @@ Image Symbol Table
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  fadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
-    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixul.o ABSOLUTE
     ../fplib/microlib/fpflt.c                0x00000000   Number         0  fflti.o ABSOLUTE
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
@@ -420,26 +423,30 @@ Image Symbol Table
     .text                                    0x000009f0   Section        0  port.o(.text)
     prvSetupTimerInterrupt                   0x00000a0b   Thumb Code    16  port.o(.text)
     .text                                    0x00000aa0   Section        0  main.o(.text)
-    .text                                    0x00000d0c   Section        0  basic_io.o(.text)
-    .text                                    0x00000d64   Section       28  startup_mps_cm3.o(.text)
-    .text                                    0x00000d80   Section        0  rand.o(.text)
-    .text                                    0x00000da4   Section        0  memseta.o(.text)
-    .text                                    0x00000dc8   Section        0  strncpy.o(.text)
-    .text                                    0x00000de0   Section        0  fadd.o(.text)
-    .text                                    0x00000e90   Section        0  fflti.o(.text)
-    .text                                    0x00000ea2   Section        0  f2d.o(.text)
-    .text                                    0x00000ec8   Section       48  cdcmple.o(.text)
-    .text                                    0x00000ef8   Section        0  uidiv.o(.text)
-    .text                                    0x00000f24   Section        0  iusefp.o(.text)
-    .text                                    0x00000f24   Section        0  fepilogue.o(.text)
-    .text                                    0x00000f94   Section       36  init.o(.text)
-    i.__0printf$3                            0x00000fb8   Section        0  printf3.o(i.__0printf$3)
-    i.__scatterload_copy                     0x00000fd8   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x00000fe6   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x00000fe8   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._printf_core                           0x00000ff8   Section        0  printf3.o(i._printf_core)
-    _printf_core                             0x00000ff9   Thumb Code   436  printf3.o(i._printf_core)
-    .conststring                             0x000011b0   Section       27  main.o(.conststring)
+    .text                                    0x00000d9c   Section        0  basic_io.o(.text)
+    .text                                    0x00000df4   Section       28  startup_mps_cm3.o(.text)
+    .text                                    0x00000e10   Section        0  rand.o(.text)
+    .text                                    0x00000e34   Section        0  memcpya.o(.text)
+    .text                                    0x00000e58   Section        0  memseta.o(.text)
+    .text                                    0x00000e7c   Section        0  strncpy.o(.text)
+    .text                                    0x00000e94   Section        0  fadd.o(.text)
+    .text                                    0x00000f44   Section        0  fflti.o(.text)
+    .text                                    0x00000f56   Section        0  f2d.o(.text)
+    .text                                    0x00000f7c   Section       48  cdcmple.o(.text)
+    .text                                    0x00000fac   Section        0  uidiv.o(.text)
+    .text                                    0x00000fd8   Section        0  fepilogue.o(.text)
+    .text                                    0x00000fd8   Section        0  iusefp.o(.text)
+    .text                                    0x00001048   Section       36  init.o(.text)
+    i.__0printf$3                            0x0000106c   Section        0  printf3.o(i.__0printf$3)
+    i.__0sprintf$3                           0x0000108c   Section        0  printf3.o(i.__0sprintf$3)
+    i.__scatterload_copy                     0x000010b4   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x000010c2   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x000010c4   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._printf_core                           0x000010d4   Section        0  printf3.o(i._printf_core)
+    _printf_core                             0x000010d5   Thumb Code   436  printf3.o(i._printf_core)
+    i._sputc                                 0x0000128c   Section        0  printf3.o(i._sputc)
+    _sputc                                   0x0000128d   Thumb Code    10  printf3.o(i._sputc)
+    .conststring                             0x00001298   Section       27  main.o(.conststring)
     .data                                    0x20000000   Section       52  tasks.o(.data)
     pxDelayedTaskList                        0x20000004   Data           4  tasks.o(.data)
     pxOverflowDelayedTaskList                0x20000008   Data           4  tasks.o(.data)
@@ -469,8 +476,8 @@ Image Symbol Table
     xSuspendedTaskList                       0x200000ec   Data          20  tasks.o(.bss)
     .bss                                     0x20000100   Section     4096  heap_1.o(.bss)
     xHeap                                    0x20000100   Data        4096  heap_1.o(.bss)
-    .bss                                     0x20001100   Section       60  main.o(.bss)
-    STACK                                    0x20001140   Section      512  startup_mps_cm3.o(STACK)
+    .bss                                     0x20001100   Section      160  main.o(.bss)
+    STACK                                    0x200011a0   Section      512  startup_mps_cm3.o(STACK)
 
     Global Symbols
 
@@ -575,84 +582,93 @@ Image Symbol Table
     vPortEnterCritical                       0x00000a53   Thumb Code    18  port.o(.text)
     vPortExitCritical                        0x00000a65   Thumb Code    24  port.o(.text)
     xPortSysTickHandler                      0x00000a7d   Thumb Code    28  port.o(.text)
-    admit                                    0x00000aa1   Thumb Code   102  main.o(.text)
-    InitTasks                                0x00000b07   Thumb Code   380  main.o(.text)
-    main                                     0x00000c83   Thumb Code    36  main.o(.text)
-    vContinuousProcessingTask                0x00000ca7   Thumb Code    36  main.o(.text)
-    vPrintString                             0x00000d0d   Thumb Code    20  basic_io.o(.text)
-    vPrintStringAndNumber                    0x00000d21   Thumb Code    26  basic_io.o(.text)
-    fputc                                    0x00000d3b   Thumb Code    30  basic_io.o(.text)
-    Reset_Handler                            0x00000d65   Thumb Code     4  startup_mps_cm3.o(.text)
-    NMI_Handler                              0x00000d69   Thumb Code     2  startup_mps_cm3.o(.text)
-    HardFault_Handler                        0x00000d6b   Thumb Code     2  startup_mps_cm3.o(.text)
-    MemManage_Handler                        0x00000d6d   Thumb Code     2  startup_mps_cm3.o(.text)
-    BusFault_Handler                         0x00000d6f   Thumb Code     2  startup_mps_cm3.o(.text)
-    UsageFault_Handler                       0x00000d71   Thumb Code     2  startup_mps_cm3.o(.text)
-    SVC_Handler                              0x00000d73   Thumb Code     2  startup_mps_cm3.o(.text)
-    DebugMon_Handler                         0x00000d75   Thumb Code     2  startup_mps_cm3.o(.text)
-    PendSV_Handler                           0x00000d77   Thumb Code     2  startup_mps_cm3.o(.text)
-    SysTick_Handler                          0x00000d79   Thumb Code     2  startup_mps_cm3.o(.text)
-    AACI_IRQHandler                          0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    CAN_IRQHandler                           0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    CHLCD_IRQHandler                         0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    CLCD_IRQHandler                          0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    CPU_CLCD_IRQHandler                      0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    ENET_IRQHandler                          0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    FLEXRAY_IRQHandler                       0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    I2C_IRQHandler                           0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    LIN_IRQHandler                           0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    MCIA_IRQHandler                          0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    MCIB_IRQHandler                          0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    RTC_IRQHandler                           0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    SPI_IRQHandler                           0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    TIM0_IRQHandler                          0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    TIM2_IRQHandler                          0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    UART0_IRQHandler                         0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    UART1_IRQHandler                         0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    UART2_IRQHandler                         0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    UART3_IRQHandler                         0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    UART4_IRQHandler                         0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    USBDC_IRQHandler                         0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    USBHC_IRQHandler                         0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    WDT_IRQHandler                           0x00000d7b   Thumb Code     0  startup_mps_cm3.o(.text)
-    rand                                     0x00000d81   Thumb Code    20  rand.o(.text)
-    srand                                    0x00000d95   Thumb Code     6  rand.o(.text)
-    __aeabi_memset                           0x00000da5   Thumb Code    14  memseta.o(.text)
-    __aeabi_memset4                          0x00000da5   Thumb Code     0  memseta.o(.text)
-    __aeabi_memset8                          0x00000da5   Thumb Code     0  memseta.o(.text)
-    __aeabi_memclr                           0x00000db3   Thumb Code     4  memseta.o(.text)
-    __aeabi_memclr4                          0x00000db3   Thumb Code     0  memseta.o(.text)
-    __aeabi_memclr8                          0x00000db3   Thumb Code     0  memseta.o(.text)
-    _memset$wrapper                          0x00000db7   Thumb Code    18  memseta.o(.text)
-    strncpy                                  0x00000dc9   Thumb Code    24  strncpy.o(.text)
-    __aeabi_fadd                             0x00000de1   Thumb Code   164  fadd.o(.text)
-    __aeabi_fsub                             0x00000e85   Thumb Code     6  fadd.o(.text)
-    __aeabi_frsub                            0x00000e8b   Thumb Code     6  fadd.o(.text)
-    __aeabi_i2f                              0x00000e91   Thumb Code    18  fflti.o(.text)
-    __aeabi_f2d                              0x00000ea3   Thumb Code    38  f2d.o(.text)
-    __aeabi_cdcmpeq                          0x00000ec9   Thumb Code     0  cdcmple.o(.text)
-    __aeabi_cdcmple                          0x00000ec9   Thumb Code    48  cdcmple.o(.text)
-    __aeabi_uidiv                            0x00000ef9   Thumb Code     0  uidiv.o(.text)
-    __aeabi_uidivmod                         0x00000ef9   Thumb Code    44  uidiv.o(.text)
-    __I$use$fp                               0x00000f25   Thumb Code     0  iusefp.o(.text)
-    _float_round                             0x00000f25   Thumb Code    18  fepilogue.o(.text)
-    _float_epilogue                          0x00000f37   Thumb Code    92  fepilogue.o(.text)
-    __scatterload                            0x00000f95   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x00000f95   Thumb Code     0  init.o(.text)
-    __0printf$3                              0x00000fb9   Thumb Code    22  printf3.o(i.__0printf$3)
-    __1printf$3                              0x00000fb9   Thumb Code     0  printf3.o(i.__0printf$3)
-    __2printf                                0x00000fb9   Thumb Code     0  printf3.o(i.__0printf$3)
-    __scatterload_copy                       0x00000fd9   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x00000fe7   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x00000fe9   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    Region$$Table$$Base                      0x000011cc   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x000011ec   Number         0  anon$$obj.o(Region$$Table)
+    admit                                    0x00000aa1   Thumb Code    94  main.o(.text)
+    InitTasks                                0x00000aff   Thumb Code   356  main.o(.text)
+    main                                     0x00000c63   Thumb Code    36  main.o(.text)
+    vContinuousProcessingTask                0x00000c87   Thumb Code    36  main.o(.text)
+    swap                                     0x00000cab   Thumb Code    42  main.o(.text)
+    partition                                0x00000cd5   Thumb Code    78  main.o(.text)
+    quickSort                                0x00000d23   Thumb Code    52  main.o(.text)
+    vPrintString                             0x00000d9d   Thumb Code    20  basic_io.o(.text)
+    vPrintStringAndNumber                    0x00000db1   Thumb Code    26  basic_io.o(.text)
+    fputc                                    0x00000dcb   Thumb Code    30  basic_io.o(.text)
+    Reset_Handler                            0x00000df5   Thumb Code     4  startup_mps_cm3.o(.text)
+    NMI_Handler                              0x00000df9   Thumb Code     2  startup_mps_cm3.o(.text)
+    HardFault_Handler                        0x00000dfb   Thumb Code     2  startup_mps_cm3.o(.text)
+    MemManage_Handler                        0x00000dfd   Thumb Code     2  startup_mps_cm3.o(.text)
+    BusFault_Handler                         0x00000dff   Thumb Code     2  startup_mps_cm3.o(.text)
+    UsageFault_Handler                       0x00000e01   Thumb Code     2  startup_mps_cm3.o(.text)
+    SVC_Handler                              0x00000e03   Thumb Code     2  startup_mps_cm3.o(.text)
+    DebugMon_Handler                         0x00000e05   Thumb Code     2  startup_mps_cm3.o(.text)
+    PendSV_Handler                           0x00000e07   Thumb Code     2  startup_mps_cm3.o(.text)
+    SysTick_Handler                          0x00000e09   Thumb Code     2  startup_mps_cm3.o(.text)
+    AACI_IRQHandler                          0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    CAN_IRQHandler                           0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    CHLCD_IRQHandler                         0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    CLCD_IRQHandler                          0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    CPU_CLCD_IRQHandler                      0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    ENET_IRQHandler                          0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    FLEXRAY_IRQHandler                       0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    I2C_IRQHandler                           0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    LIN_IRQHandler                           0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    MCIA_IRQHandler                          0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    MCIB_IRQHandler                          0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    RTC_IRQHandler                           0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    SPI_IRQHandler                           0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    TIM0_IRQHandler                          0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    TIM2_IRQHandler                          0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    UART0_IRQHandler                         0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    UART1_IRQHandler                         0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    UART2_IRQHandler                         0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    UART3_IRQHandler                         0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    UART4_IRQHandler                         0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    USBDC_IRQHandler                         0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    USBHC_IRQHandler                         0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    WDT_IRQHandler                           0x00000e0b   Thumb Code     0  startup_mps_cm3.o(.text)
+    rand                                     0x00000e11   Thumb Code    20  rand.o(.text)
+    srand                                    0x00000e25   Thumb Code     6  rand.o(.text)
+    __aeabi_memcpy                           0x00000e35   Thumb Code    36  memcpya.o(.text)
+    __aeabi_memcpy4                          0x00000e35   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memcpy8                          0x00000e35   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memset                           0x00000e59   Thumb Code    14  memseta.o(.text)
+    __aeabi_memset4                          0x00000e59   Thumb Code     0  memseta.o(.text)
+    __aeabi_memset8                          0x00000e59   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr                           0x00000e67   Thumb Code     4  memseta.o(.text)
+    __aeabi_memclr4                          0x00000e67   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr8                          0x00000e67   Thumb Code     0  memseta.o(.text)
+    _memset$wrapper                          0x00000e6b   Thumb Code    18  memseta.o(.text)
+    strncpy                                  0x00000e7d   Thumb Code    24  strncpy.o(.text)
+    __aeabi_fadd                             0x00000e95   Thumb Code   164  fadd.o(.text)
+    __aeabi_fsub                             0x00000f39   Thumb Code     6  fadd.o(.text)
+    __aeabi_frsub                            0x00000f3f   Thumb Code     6  fadd.o(.text)
+    __aeabi_i2f                              0x00000f45   Thumb Code    18  fflti.o(.text)
+    __aeabi_f2d                              0x00000f57   Thumb Code    38  f2d.o(.text)
+    __aeabi_cdcmpeq                          0x00000f7d   Thumb Code     0  cdcmple.o(.text)
+    __aeabi_cdcmple                          0x00000f7d   Thumb Code    48  cdcmple.o(.text)
+    __aeabi_uidiv                            0x00000fad   Thumb Code     0  uidiv.o(.text)
+    __aeabi_uidivmod                         0x00000fad   Thumb Code    44  uidiv.o(.text)
+    __I$use$fp                               0x00000fd9   Thumb Code     0  iusefp.o(.text)
+    _float_round                             0x00000fd9   Thumb Code    18  fepilogue.o(.text)
+    _float_epilogue                          0x00000feb   Thumb Code    92  fepilogue.o(.text)
+    __scatterload                            0x00001049   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x00001049   Thumb Code     0  init.o(.text)
+    __0printf$3                              0x0000106d   Thumb Code    22  printf3.o(i.__0printf$3)
+    __1printf$3                              0x0000106d   Thumb Code     0  printf3.o(i.__0printf$3)
+    __2printf                                0x0000106d   Thumb Code     0  printf3.o(i.__0printf$3)
+    __0sprintf$3                             0x0000108d   Thumb Code    34  printf3.o(i.__0sprintf$3)
+    __1sprintf$3                             0x0000108d   Thumb Code     0  printf3.o(i.__0sprintf$3)
+    __2sprintf                               0x0000108d   Thumb Code     0  printf3.o(i.__0sprintf$3)
+    __scatterload_copy                       0x000010b5   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x000010c3   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x000010c5   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    Region$$Table$$Base                      0x000012b4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000012d4   Number         0  anon$$obj.o(Region$$Table)
     pxCurrentTCB                             0x20000000   Data           4  tasks.o(.data)
     n                                        0x2000003c   Data           4  main.o(.data)
     pcTextForTask1                           0x20000040   Data           4  main.o(.data)
     __stdout                                 0x20000048   Data           4  stdout.o(.data)
-    tasks                                    0x20001100   Data          60  main.o(.bss)
-    __initial_sp                             0x20001340   Data           0  startup_mps_cm3.o(STACK)
+    tasks                                    0x20001100   Data         160  main.o(.bss)
+    __initial_sp                             0x200013a0   Data           0  startup_mps_cm3.o(STACK)
 
 
 
@@ -662,68 +678,71 @@ Memory Map of the image
 
   Image Entry point : 0x000000c1
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00001238, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00001320, Max: 0x00040000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000011ec, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000012d4, Max: 0x00040000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x000000c0   Data   RO          181    RESET               startup_mps_cm3.o
-    0x000000c0   0x000000c0   0x00000000   Code   RO          186  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x000000c0   0x000000c0   0x00000004   Code   RO          469    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x000000c4   0x000000c4   0x00000004   Code   RO          472    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x000000c8   0x000000c8   0x00000000   Code   RO          474    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x000000c8   0x000000c8   0x00000000   Code   RO          476    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x000000c8   0x000000c8   0x00000008   Code   RO          477    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x000000d0   0x000000d0   0x00000000   Code   RO          479    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x000000d0   0x000000d0   0x00000000   Code   RO          481    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x000000d0   0x000000d0   0x00000004   Code   RO          470    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x00000000   0x00000000   0x000000c0   Data   RO          188    RESET               startup_mps_cm3.o
+    0x000000c0   0x000000c0   0x00000000   Code   RO          193  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x000000c0   0x000000c0   0x00000004   Code   RO          476    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x000000c4   0x000000c4   0x00000004   Code   RO          479    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x000000c8   0x000000c8   0x00000000   Code   RO          481    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x000000c8   0x000000c8   0x00000000   Code   RO          483    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x000000c8   0x000000c8   0x00000008   Code   RO          484    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x000000d0   0x000000d0   0x00000000   Code   RO          486    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x000000d0   0x000000d0   0x00000000   Code   RO          488    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x000000d0   0x000000d0   0x00000004   Code   RO          477    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x000000d4   0x000000d4   0x00000088   Code   RO          110    .emb_text           port.o
     0x0000015c   0x0000015c   0x00000094   Code   RO            1    .text               list.o
     0x000001f0   0x000001f0   0x00000794   Code   RO           63    .text               tasks.o
     0x00000984   0x00000984   0x0000006c   Code   RO           95    .text               heap_1.o
     0x000009f0   0x000009f0   0x000000b0   Code   RO          111    .text               port.o
-    0x00000aa0   0x00000aa0   0x0000026c   Code   RO          132    .text               main.o
-    0x00000d0c   0x00000d0c   0x00000058   Code   RO          164    .text               basic_io.o
-    0x00000d64   0x00000d64   0x0000001c   Code   RO          182    .text               startup_mps_cm3.o
-    0x00000d80   0x00000d80   0x00000024   Code   RO          189    .text               mc_w.l(rand.o)
-    0x00000da4   0x00000da4   0x00000024   Code   RO          194    .text               mc_w.l(memseta.o)
-    0x00000dc8   0x00000dc8   0x00000018   Code   RO          196    .text               mc_w.l(strncpy.o)
-    0x00000de0   0x00000de0   0x000000b0   Code   RO          461    .text               mf_w.l(fadd.o)
-    0x00000e90   0x00000e90   0x00000012   Code   RO          463    .text               mf_w.l(fflti.o)
-    0x00000ea2   0x00000ea2   0x00000026   Code   RO          465    .text               mf_w.l(f2d.o)
-    0x00000ec8   0x00000ec8   0x00000030   Code   RO          467    .text               mf_w.l(cdcmple.o)
-    0x00000ef8   0x00000ef8   0x0000002c   Code   RO          484    .text               mc_w.l(uidiv.o)
-    0x00000f24   0x00000f24   0x00000000   Code   RO          488    .text               mc_w.l(iusefp.o)
-    0x00000f24   0x00000f24   0x0000006e   Code   RO          489    .text               mf_w.l(fepilogue.o)
-    0x00000f92   0x00000f92   0x00000002   PAD
-    0x00000f94   0x00000f94   0x00000024   Code   RO          501    .text               mc_w.l(init.o)
-    0x00000fb8   0x00000fb8   0x00000020   Code   RO          289    i.__0printf$3       mc_w.l(printf3.o)
-    0x00000fd8   0x00000fd8   0x0000000e   Code   RO          513    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x00000fe6   0x00000fe6   0x00000002   Code   RO          514    i.__scatterload_null  mc_w.l(handlers.o)
-    0x00000fe8   0x00000fe8   0x0000000e   Code   RO          515    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x00000ff6   0x00000ff6   0x00000002   PAD
-    0x00000ff8   0x00000ff8   0x000001b8   Code   RO          296    i._printf_core      mc_w.l(printf3.o)
-    0x000011b0   0x000011b0   0x0000001b   Data   RO          134    .conststring        main.o
-    0x000011cb   0x000011cb   0x00000001   PAD
-    0x000011cc   0x000011cc   0x00000020   Data   RO          511    Region$$Table       anon$$obj.o
+    0x00000aa0   0x00000aa0   0x000002fc   Code   RO          132    .text               main.o
+    0x00000d9c   0x00000d9c   0x00000058   Code   RO          171    .text               basic_io.o
+    0x00000df4   0x00000df4   0x0000001c   Code   RO          189    .text               startup_mps_cm3.o
+    0x00000e10   0x00000e10   0x00000024   Code   RO          196    .text               mc_w.l(rand.o)
+    0x00000e34   0x00000e34   0x00000024   Code   RO          199    .text               mc_w.l(memcpya.o)
+    0x00000e58   0x00000e58   0x00000024   Code   RO          201    .text               mc_w.l(memseta.o)
+    0x00000e7c   0x00000e7c   0x00000018   Code   RO          203    .text               mc_w.l(strncpy.o)
+    0x00000e94   0x00000e94   0x000000b0   Code   RO          468    .text               mf_w.l(fadd.o)
+    0x00000f44   0x00000f44   0x00000012   Code   RO          470    .text               mf_w.l(fflti.o)
+    0x00000f56   0x00000f56   0x00000026   Code   RO          472    .text               mf_w.l(f2d.o)
+    0x00000f7c   0x00000f7c   0x00000030   Code   RO          474    .text               mf_w.l(cdcmple.o)
+    0x00000fac   0x00000fac   0x0000002c   Code   RO          491    .text               mc_w.l(uidiv.o)
+    0x00000fd8   0x00000fd8   0x00000000   Code   RO          495    .text               mc_w.l(iusefp.o)
+    0x00000fd8   0x00000fd8   0x0000006e   Code   RO          496    .text               mf_w.l(fepilogue.o)
+    0x00001046   0x00001046   0x00000002   PAD
+    0x00001048   0x00001048   0x00000024   Code   RO          508    .text               mc_w.l(init.o)
+    0x0000106c   0x0000106c   0x00000020   Code   RO          296    i.__0printf$3       mc_w.l(printf3.o)
+    0x0000108c   0x0000108c   0x00000028   Code   RO          298    i.__0sprintf$3      mc_w.l(printf3.o)
+    0x000010b4   0x000010b4   0x0000000e   Code   RO          520    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x000010c2   0x000010c2   0x00000002   Code   RO          521    i.__scatterload_null  mc_w.l(handlers.o)
+    0x000010c4   0x000010c4   0x0000000e   Code   RO          522    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x000010d2   0x000010d2   0x00000002   PAD
+    0x000010d4   0x000010d4   0x000001b8   Code   RO          303    i._printf_core      mc_w.l(printf3.o)
+    0x0000128c   0x0000128c   0x0000000a   Code   RO          305    i._sputc            mc_w.l(printf3.o)
+    0x00001296   0x00001296   0x00000002   PAD
+    0x00001298   0x00001298   0x0000001b   Data   RO          134    .conststring        main.o
+    0x000012b3   0x000012b3   0x00000001   PAD
+    0x000012b4   0x000012b4   0x00000020   Data   RO          518    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x000011ec, Size: 0x00001340, Max: 0x00010000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x000012d4, Size: 0x000013a0, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x000011ec   0x00000034   Data   RW           65    .data               tasks.o
-    0x20000034   0x00001220   0x00000004   Data   RW           97    .data               heap_1.o
-    0x20000038   0x00001224   0x00000004   Data   RW          112    .data               port.o
-    0x2000003c   0x00001228   0x00000008   Data   RW          135    .data               main.o
-    0x20000044   0x00001230   0x00000004   Data   RW          190    .data               mc_w.l(rand.o)
-    0x20000048   0x00001234   0x00000004   Data   RW          483    .data               mc_w.l(stdout.o)
+    0x20000000   0x000012d4   0x00000034   Data   RW           65    .data               tasks.o
+    0x20000034   0x00001308   0x00000004   Data   RW           97    .data               heap_1.o
+    0x20000038   0x0000130c   0x00000004   Data   RW          112    .data               port.o
+    0x2000003c   0x00001310   0x00000008   Data   RW          135    .data               main.o
+    0x20000044   0x00001318   0x00000004   Data   RW          197    .data               mc_w.l(rand.o)
+    0x20000048   0x0000131c   0x00000004   Data   RW          490    .data               mc_w.l(stdout.o)
     0x2000004c        -       0x000000b4   Zero   RW           64    .bss                tasks.o
     0x20000100        -       0x00001000   Zero   RW           96    .bss                heap_1.o
-    0x20001100        -       0x0000003c   Zero   RW          133    .bss                main.o
-    0x2000113c   0x00001238   0x00000004   PAD
-    0x20001140        -       0x00000200   Zero   RW          179    STACK               startup_mps_cm3.o
+    0x20001100        -       0x000000a0   Zero   RW          133    .bss                main.o
+    0x200011a0        -       0x00000200   Zero   RW          186    STACK               startup_mps_cm3.o
 
 
 ==============================================================================
@@ -733,19 +752,19 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        88         12          0          0          0       1091   basic_io.o
-       108         10          0          4       4096       2152   heap_1.o
-       148          0          0          0          0       8593   list.o
-       620         66         27          8         60       2398   main.o
-       312         20          0          4          0       2849   port.o
-         0          0          0          0          0       1700   queue.o
-        28          4        192          0        512        836   startup_mps_cm3.o
-      1940        138          0         52        180      11268   tasks.o
+        88         12          0          0          0        991   basic_io.o
+       108         10          0          4       4096       1852   heap_1.o
+       148          0          0          0          0       8093   list.o
+       764         70         27          8        160       3127   main.o
+       312         20          0          4          0       2549   port.o
+         0          0          0          0          0       1600   queue.o
+        28          4        192          0        512        736   startup_mps_cm3.o
+      1940        138          0         52        180      10968   tasks.o
 
     ----------------------------------------------------------------------
-      3244        250        252         68       4852      30887   Object Totals
+      3388        254        252         68       4948      29916   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         0          0          1          0          4          0   (incl. Padding)
+         0          0          1          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -762,8 +781,9 @@ Image component sizes
         30          0          0          0          0          0   handlers.o
         36          8          0          0          0         68   init.o
          0          0          0          0          0          0   iusefp.o
+        36          0          0          0          0         68   memcpya.o
         36          0          0          0          0        108   memseta.o
-       472         14          0          0          0        184   printf3.o
+       522         20          0          0          0        336   printf3.o
         36         10          0          4          0        136   rand.o
          0          0          0          4          0          0   stdout.o
         24          0          0          0          0         76   strncpy.o
@@ -775,18 +795,18 @@ Image component sizes
         18          0          0          0          0         68   fflti.o
 
     ----------------------------------------------------------------------
-      1092         40          0          8          0       1164   Library Totals
-         4          0          0          0          0          0   (incl. Padding)
+      1180         46          0          8          0       1384   Library Totals
+         6          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-       698         40          0          8          0        652   mc_w.l
+       784         46          0          8          0        872   mc_w.l
        390          0          0          0          0        512   mf_w.l
 
     ----------------------------------------------------------------------
-      1092         40          0          8          0       1164   Library Totals
+      1180         46          0          8          0       1384   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -795,15 +815,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4336        290        252         76       4852      31111   Grand Totals
-      4336        290        252         76       4852      31111   ELF Image Totals
-      4336        290        252         76          0          0   ROM Totals
+      4568        300        252         76       4948      30204   Grand Totals
+      4568        300        252         76       4948      30204   ELF Image Totals
+      4568        300        252         76          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4588 (   4.48kB)
-    Total RW  Size (RW Data + ZI Data)              4928 (   4.81kB)
-    Total ROM Size (Code + RO Data + RW Data)       4664 (   4.55kB)
+    Total RO  Size (Code + RO Data)                 4820 (   4.71kB)
+    Total RW  Size (RW Data + ZI Data)              5024 (   4.91kB)
+    Total ROM Size (Code + RO Data + RW Data)       4896 (   4.78kB)
 
 ==============================================================================
 
