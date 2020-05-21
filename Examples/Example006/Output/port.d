@@ -3,6 +3,7 @@
 .\output\port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\output\port.o: ..\..\FreeRTOS-Source\include\projdefs.h
 .\output\port.o: ..\Example006\FreeRTOSConfig.h
+.\output\port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\port.o: ..\..\FreeRTOS-Source\include\portable.h
 .\output\port.o: ..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3\portmacro.h
 .\output\port.o: ..\..\FreeRTOS-Source\include\mpu_wrappers.h

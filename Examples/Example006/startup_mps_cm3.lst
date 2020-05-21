@@ -57,9 +57,9 @@ ARM Macro Assembler    Page 1
    35 00000200         ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
    36 00000200         ; </h>
    37 00000200         
-   38 00000200 00000000 
+   38 00000200 00000400 
                        Heap_Size
-                               EQU              0x00000000
+                               EQU              0x00000400
    39 00000200         
    40 00000200                 AREA             HEAP, NOINIT, READWRITE, ALIGN=
 3
@@ -72,20 +72,20 @@ ARM Macro Assembler    Page 2
    41 00000000         __heap_base
    42 00000000         Heap_Mem
                                SPACE            Heap_Size
-   43 00000000         __heap_limit
-   44 00000000         
-   45 00000000         
-   46 00000000                 PRESERVE8
-   47 00000000                 THUMB
-   48 00000000         
-   49 00000000         ; FreeRTOS specific handlers.
-   50 00000000                 EXTERN           vPortSVCHandler
-   51 00000000                 EXTERN           xPortPendSVHandler
-   52 00000000                 EXTERN           xPortSysTickHandler
-   53 00000000         
-   54 00000000         ; Vector Table Mapped to Address 0 at Reset
-   55 00000000         
-   56 00000000                 AREA             RESET, DATA, READONLY
+   43 00000400         __heap_limit
+   44 00000400         
+   45 00000400         
+   46 00000400                 PRESERVE8
+   47 00000400                 THUMB
+   48 00000400         
+   49 00000400         ; FreeRTOS specific handlers.
+   50 00000400                 EXTERN           vPortSVCHandler
+   51 00000400                 EXTERN           xPortPendSVHandler
+   52 00000400                 EXTERN           xPortSysTickHandler
+   53 00000400         
+   54 00000400         ; Vector Table Mapped to Address 0 at Reset
+   55 00000400         
+   56 00000400                 AREA             RESET, DATA, READONLY
    57 00000000                 EXPORT           __Vectors
    58 00000000         
    59 00000000 00000000 
@@ -432,7 +432,7 @@ Symbol: __heap_base
    Uses
       At line 230 in file startup_MPS_CM3.s
 Comment: __heap_base used once
-__heap_limit 00000000
+__heap_limit 00000400
 
 Symbol: __heap_limit
    Definitions
@@ -817,7 +817,7 @@ Symbol: WDT_IRQHandler
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 Absolute symbols
 
-Heap_Size 00000000
+Heap_Size 00000400
 
 Symbol: Heap_Size
    Definitions

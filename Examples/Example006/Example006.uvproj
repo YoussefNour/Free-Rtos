@@ -155,7 +155,7 @@
             <CpuDllArguments></CpuDllArguments>
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
+            <InitializationFile>.\my.ini</InitializationFile>
           </SimDlls>
           <TargetDlls>
             <CpuDll></CpuDll>
@@ -437,14 +437,14 @@
               <FilePath>..\..\FreeRTOS-Source\tasks.c</FilePath>
             </File>
             <File>
-              <FileName>heap_1.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\FreeRTOS-Source\portable\MemMang\heap_1.c</FilePath>
-            </File>
-            <File>
               <FileName>port.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\FreeRTOS-Source\portable\RVDS\ARM_CM3\port.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\FreeRTOS-Source\portable\MemMang\heap_2.c</FilePath>
             </File>
           </Files>
         </Group>

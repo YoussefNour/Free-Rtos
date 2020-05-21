@@ -7,11 +7,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-//#include <time.h>
-//#include <stm32f4xx_hal_conf.h>
+
 
 #define N 5
-#define tst 4
+#define tst 1
 #define latest_arrival_time 15
 #define max_computation_time 8
 #define max_period_multiplier 17
@@ -21,54 +20,69 @@ struct task{
 	int Ta;
 	int Tp;
 	int Tc;
+	int P;
+	xTaskHandle handler;
+	int running;
 };
 
 volatile unsigned int n;
 struct task tasks[N];
+struct task *dTasks;
 void InitTasks(int);
 int admit(void);
 void swap(struct task* a, struct task* b);
 int partition (struct task arr[], int low, int high);
 void quickSort(struct task arr[], int low, int high);
-
-
-const char *pcTextForTask1 = "Continuous task 1 running\n";
+void printTasks(struct task tasks[]);
+void prioritize(struct task tasks[]);
+void CreateTasks(struct task tasks[]);
+void DynamicScheduler(struct task tasks[]);
+static void VTask(struct task* p);
+struct task* ptr;
+xTaskHandle xTaskDynamicHandle;
 
 int main( void )
 {
-	srand(256); //time(null)
+	srand(256); 
 	InitTasks(1);
 	vPrintStringAndNumber("\n\nschedulability:",admit());
-	//xTaskCreate( vContinuousProcessingTask, "Task 1", 240, (void*)pcTextForTask1, 1, NULL );
+	quickSort(tasks,0,n-1);
+	printf("\nfinished sorting");
+	printTasks(tasks);
+	prioritize(tasks);
+	printTasks(tasks);
+	
+	switch(1){
+		case 1:
+			CreateTasks(tasks);
+			break;
+		case 2:
+			xTaskCreate(DynamicScheduler,"D-Scheduler",100,tasks,N,&xTaskDynamicHandle);
+			break;
+		default:
+			break;
+	
+	}
+	
+	
 	vTaskStartScheduler();
+	free(ptr); 
 	for( ;; );
 }
 
-
-void vContinuousProcessingTask( void *pvParameters )
-{
-char *pcTaskName;
-volatile unsigned long ul;
-
-	pcTaskName = ( char * ) pvParameters;
-
-	for( ;; )
-	{
-		vPrintString( pcTaskName );
-
-		for( ul = 0; ul < 0xf; ul++ )
-		{
-			__nop();
-		}
-	}
+void vApplicationIdleHook(){
+	for(;;);
 }
+
 
 void InitTasks(int mode){
 	n = rand()%N+2;
 	char arr[2] = "4";
+	xTaskHandle xTaskHandleArr[N];
 	volatile unsigned int ul;
 	for( ul = 0; ul <n; ul++ )
 		{
+			tasks[ul].handler = xTaskHandleArr[ul];
 			sprintf(tasks[ul].name,"Task %d",ul+1);
 			printf("\n\n%s \n",tasks[ul].name);
 			tasks[ul].Ta = rand()% latest_arrival_time;
@@ -85,10 +99,11 @@ void InitTasks(int mode){
 			}
 			tasks[ul].Tc = tasks[ul].Tc*tst;
 			vPrintStringAndNumber("Tc:",tasks[ul].Tc);
+			tasks[ul].running = 0;
 			printf("Tp: %d ",tasks[ul].Tp);
-		
 		}
 }
+
 
 int admit()
 {
@@ -140,7 +155,93 @@ void quickSort(struct task arr[], int low, int high)
         // partition and after partition 
         quickSort(arr, low, pi - 1); 
         quickSort(arr, pi + 1, high); 
-    } 
+    }
 } 
 
+void printTasks(struct task tasks[]){
+	for(int ul =0;ul<n;ul++){
+		printf("\n%s \n",tasks[ul].name);
+		vPrintStringAndNumber("TA:",tasks[ul].Ta);
+		vPrintStringAndNumber("Tc:",tasks[ul].Tc);
+		printf("Tp: %d ",tasks[ul].Tp);
+		printf("\nPriority: %d\n",tasks[ul].P);
+	}
+}
+
+void prioritize(struct task tasks[]){
+	int count=1;
+	for(int ul=n-1;ul>0;ul--){
+		if(tasks[ul].Tp>tasks[ul-1].Tp){
+			tasks[ul].P=count++;
+		}else{
+			tasks[ul].P=count;
+		}
+	}
+	tasks[0].P = count;
+	printf("\n\nTasks have been prioritized\n");
+}
+
+static void VTask(struct task* p){
+	char *Taskname = (char *)p->name;
+	portTickType xLastWakeTime;
+	volatile unsigned long ul;
+	volatile unsigned long i;
+xLastWakeTime = xTaskGetTickCount();
+
+	for(;;){
+		portTickType temp;
+	  temp = 	xTaskGetTickCount();
+		vPrintString(Taskname);
+		vPrintStringAndNumber(" is running",xTaskGetTickCount());
+		while(xTaskGetTickCount()<temp+(p->Tc)){
+		
+		}
+		//	vPrintString(p->name);
+		vPrintStringAndNumber("\ndone",xTaskGetTickCount());
+	  vPrintString("\n");
+		vTaskDelayUntil(&xLastWakeTime,(p->Tp));
+	}
+}
+
+void CreateTasks(struct task tasks[]){
+	//xTaskCreate(DynamicScheduler,"D-Scheduler",100,tasks,1,&xTaskDynamicHandle);
+	for(int ul=n-1;ul>=0;ul--){
+		xTaskCreate(VTask,tasks[ul].name,50,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
+	}
+	
+}
+
+static void DynamicScheduler(struct task tasks[]){
+	
+	//looping on static array
+	volatile unsigned int ul;
+	volatile unsigned int activeTasks=0;
+	portTickType xLastWakeTime;
+	volatile unsigned int delay=0;	
+		
+	for(;;){
+		// creation for loop
+		for( ul = 0; ul <n; ul++ )
+		{
+			if(tasks[ul].running==0 && tasks[ul].Ta <= xTaskGetTickCount()){
+				if (ptr == NULL){
+					ptr = (struct task*)malloc((++activeTasks)*sizeof(struct task));
+					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
+					ptr[activeTasks-1] = tasks[ul];
+					tasks[ul].running=1;
+					delay = tasks[ul].Tc;
+				} 
+				else{
+					ptr = realloc(ptr, (++activeTasks) * sizeof(struct task)); 
+					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
+					ptr[activeTasks-1] = tasks[ul];
+					tasks[ul].running=1;
+					delay = tasks[ul].Tc;
+				} 
+		}
+		}
+		vTaskDelayUntil(&xLastWakeTime,delay);
+	}
+	
+}
 
