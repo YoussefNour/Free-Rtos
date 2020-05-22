@@ -182,23 +182,29 @@ void prioritize(struct task tasks[]){
 }
 
 static void VTask(struct task* p){
+	portTickType xLastWakeTime= xTaskGetTickCount();
 	char *Taskname = (char *)p->name;
-	portTickType xLastWakeTime;
 	volatile unsigned long ul;
 	volatile unsigned long i;
-xLastWakeTime = xTaskGetTickCount();
+	portTickType temp;
+	
+	if(p->running == 0){
+		xLastWakeTime = 0;
+		p->running =1;
+	}
 
 	for(;;){
-		portTickType temp;
-	  temp = 	xTaskGetTickCount();
+		temp = 	xTaskGetTickCount();
 		vPrintString(Taskname);
-		vPrintStringAndNumber(" is running",xTaskGetTickCount());
+		vPrintStringAndNumber(" starts running at ",xTaskGetTickCount());
+		vPrintString("\n");
 		while(xTaskGetTickCount()<temp+(p->Tc)){
-		
+
 		}
 		//	vPrintString(p->name);
-		vPrintStringAndNumber("\ndone",xTaskGetTickCount());
-	  vPrintString("\n");
+		vPrintString(Taskname);
+		vPrintStringAndNumber(" is done at ",xTaskGetTickCount());
+		vPrintString("\n");
 		vTaskDelayUntil(&xLastWakeTime,(p->Tp));
 	}
 }
@@ -226,16 +232,16 @@ static void DynamicScheduler(struct task tasks[]){
 			if(tasks[ul].running==0 && tasks[ul].Ta <= xTaskGetTickCount()){
 				if (ptr == NULL){
 					ptr = (struct task*)malloc((++activeTasks)*sizeof(struct task));
+					tasks[ul].running=1;
 					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
 					ptr[activeTasks-1] = tasks[ul];
-					tasks[ul].running=1;
 					delay = tasks[ul].Tc;
 				} 
 				else{
 					ptr = realloc(ptr, (++activeTasks) * sizeof(struct task)); 
+					tasks[ul].running=1;
 					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
 					ptr[activeTasks-1] = tasks[ul];
-					tasks[ul].running=1;
 					delay = tasks[ul].Tc;
 				} 
 		}
