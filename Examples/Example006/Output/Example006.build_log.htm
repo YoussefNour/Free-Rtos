@@ -36,24 +36,24 @@ compiling tasks.c...
 compiling main.c...
 main.c(59): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
   			xTaskCreate(DynamicScheduler,"D-Scheduler",100,tasks,N,&xTaskDynamicHandle);
-main.c(78): warning:  #177-D: variable "arr"  was declared but never referenced
+main.c(77): warning:  #177-D: variable "arr"  was declared but never referenced
   	char arr[2] = "4";
-main.c(214): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
+main.c(213): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
   		xTaskCreate(VTask,tasks[ul].name,50,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
-main.c(214): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
+main.c(213): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
   		xTaskCreate(VTask,tasks[ul].name,50,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
-main.c(235): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
+main.c(236): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
   					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
-main.c(235): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
+main.c(236): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
   					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
-main.c(246): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
+main.c(247): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
   					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
-main.c(246): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
+main.c(247): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
   					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
 main.c: 8 warnings, 0 errors
 compiling port.c...
 linking...
-Program Size: Code=7116 RO-data=224 RW-data=116 ZI-data=12220  
+Program Size: Code=7476 RO-data=224 RW-data=116 ZI-data=12220  
 ".\Output\Example006.axf" - 0 Error(s), 8 Warning(s).
 Build Time Elapsed:  00:00:00
 </pre>

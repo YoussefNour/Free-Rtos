@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Output\Example006.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Output\Example006.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri May 22 17:19:40 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri May 22 18:24:29 2020
 <BR><P>
 <H3>Maximum Stack Usage =        176 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -173,17 +173,21 @@ Global Symbols
 <LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CreateTasks
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CreateTasks
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 </UL>
 
-<P><STRONG><a name="[3a]"></a>vTaskDelete</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, tasks.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortYieldFromISR
+<P><STRONG><a name="[3a]"></a>vTaskDelete</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, tasks.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = vTaskDelete &rArr; vPortExitCritical
+</UL>
+<BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortYieldFromISR
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListRemove
 <LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
 </UL>
 
 <P><STRONG><a name="[3c]"></a>vTaskIncrementTick</STRONG> (Thumb, 160 bytes, Stack size 8 bytes, tasks.o(.text))
@@ -464,6 +468,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;partition
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
 </UL>
 
 <P><STRONG><a name="[5e]"></a>partition</STRONG> (Thumb, 126 bytes, Stack size 32 bytes, main.o(.text))
@@ -498,7 +503,7 @@ Global Symbols
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
 </UL>
 
-<P><STRONG><a name="[68]"></a>CreateTasks</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, main.o(.text))
+<P><STRONG><a name="[6a]"></a>CreateTasks</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = CreateTasks &rArr; xTaskGenericCreate &rArr; prvAllocateTCBAndStack &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
@@ -506,32 +511,31 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[69]"></a>InitTasks</STRONG> (Thumb, 546 bytes, Stack size 40 bytes, main.o(.text))
+<P><STRONG><a name="[6b]"></a>InitTasks</STRONG> (Thumb, 676 bytes, Stack size 40 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = InitTasks &rArr; vPrintStringAndNumber &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[21]"></a>main</STRONG> (Thumb, 160 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[21]"></a>main</STRONG> (Thumb, 152 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = main &rArr; CreateTasks &rArr; xTaskGenericCreate &rArr; prvAllocateTCBAndStack &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;srand
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;srand
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CreateTasks
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CreateTasks
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prioritize
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printTasks
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -546,7 +550,8 @@ Global Symbols
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspendAll
 </UL>
-<BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VTask
+<BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
+<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VTask
 </UL>
 
 <P><STRONG><a name="[5a]"></a>vPrintStringAndNumber</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, basic_io.o(.text))
@@ -557,7 +562,7 @@ Global Symbols
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspendAll
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printTasks
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VTask
@@ -702,11 +707,12 @@ Global Symbols
 <P><STRONG><a name="[a]"></a>WDT_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_mps_cm3.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_mps_cm3.o(RESET)
 </UL>
-<P><STRONG><a name="[6a]"></a>rand</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, rand.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
+<P><STRONG><a name="[68]"></a>rand</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, rand.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
 </UL>
 
-<P><STRONG><a name="[6c]"></a>srand</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, rand.o(.text))
+<P><STRONG><a name="[6d]"></a>srand</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, rand.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -825,7 +831,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintString
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prioritize
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printTasks
 </UL>
@@ -837,16 +843,16 @@ Global Symbols
 
 <P><STRONG><a name="[93]"></a>__1sprintf$3</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0sprintf$3), UNUSED)
 
-<P><STRONG><a name="[6b]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0sprintf$3))
+<P><STRONG><a name="[6c]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0sprintf$3))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
+<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
 </UL>
 
-<P><STRONG><a name="[6d]"></a>free</STRONG> (Thumb, 88 bytes, Stack size 12 bytes, mallocr.o(i.__free$realloc))
+<P><STRONG><a name="[69]"></a>free</STRONG> (Thumb, 88 bytes, Stack size 12 bytes, mallocr.o(i.__free$realloc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = free
 </UL>
-<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realloc
 </UL>
 
@@ -869,7 +875,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = realloc &rArr; malloc &rArr; internal_alloc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;internal_alloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
@@ -948,20 +954,25 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[24]"></a>DynamicScheduler</STRONG> (Thumb, 710 bytes, Stack size 32 bytes, main.o(.text))
+<P><STRONG><a name="[24]"></a>DynamicScheduler</STRONG> (Thumb, 976 bytes, Stack size 32 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = DynamicScheduler &rArr; xTaskGenericCreate &rArr; prvAllocateTCBAndStack &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintString
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;swap
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prioritize
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printTasks
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCount
 <LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelayUntil
+<LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realloc
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>

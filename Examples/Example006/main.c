@@ -61,8 +61,7 @@ int main( void )
 		default:
 			break;
 	}
-	vTaskStartScheduler();
-	free(ptr); 
+	vTaskStartScheduler(); 
 	for( ;; );
 }
 
@@ -223,10 +222,12 @@ static void DynamicScheduler(struct task tasks[]){
 	volatile unsigned int activeTasks=0;
 	portTickType xLastWakeTime;
 	volatile unsigned int delay=0;	
-		
+	int willdelete;
+	int tasktodelete;
+	
 	for(;;){
 		// creation for loop
-		for( ul = 0; ul <n; ul++ )
+		for( ul = 0; ul <n; ul++)
 		{
 			if(tasks[ul].running==0 && tasks[ul].Ta <= xTaskGetTickCount()){
 				if(ptr == NULL){
@@ -250,11 +251,34 @@ static void DynamicScheduler(struct task tasks[]){
 					quickSort(ptr,0,activeTasks-1);
 					prioritize(ptr,activeTasks);
 					printTasks(ptr,activeTasks);
-				} 
+				}
+			}
 		}
+		if(xTaskGetTickCount()>=60){
+			willdelete = rand()%2;
+					if(willdelete){
+						tasktodelete = rand()%(--activeTasks);
+						vTaskDelete(ptr[tasktodelete].handler);
+						vPrintString(ptr[tasktodelete].name);
+						vPrintString(" is deleted\n");
+						swap(&ptr[tasktodelete],&ptr[activeTasks]);
+						ptr = realloc(ptr, (activeTasks) * sizeof(struct task)); 
+						vPrintStringAndNumber("\n\nschedulability:",admit(ptr,activeTasks));
+						quickSort(ptr,0,activeTasks-1);
+						prioritize(ptr,activeTasks);
+						printTasks(ptr,activeTasks);
+					}else{
+						vPrintString("\nwill not delete this round\n");
+					}
+					if(activeTasks == 1){
+						vTaskDelete(ptr[0].handler);
+						vPrintString(ptr[0].name);
+						vPrintString(" is deleted and the simulation is done\n");
+						free(ptr);
+						vTaskDelete(xTaskDynamicHandle);
+					}
 		}
 		vTaskDelayUntil(&xLastWakeTime,1);
 	}
-	
 }
 
