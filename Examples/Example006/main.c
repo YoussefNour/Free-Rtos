@@ -187,6 +187,7 @@ static void VTask(struct task* p){
 	volatile unsigned long ul;
 	volatile unsigned long i;
 	portTickType temp;
+	int oldtick;
 	
 	if(p->running == 0){
 		xLastWakeTime = 0;
@@ -194,14 +195,15 @@ static void VTask(struct task* p){
 	}
 
 	for(;;){
-		temp = 	xTaskGetTickCount();
 		vPrintString(Taskname);
 		vPrintStringAndNumber(" starts running at ",xTaskGetTickCount());
 		vPrintString("\n");
-		while(xTaskGetTickCount()<temp+(p->Tc)){
-
-		}
-		//	vPrintString(p->name);
+		oldtick = 0;
+    while(oldtick < p->Tc){
+          oldtick++;
+          temp = xTaskGetTickCount();
+          while(temp==xTaskGetTickCount());
+        }
 		vPrintString(Taskname);
 		vPrintStringAndNumber(" is done at ",xTaskGetTickCount());
 		vPrintString("\n");
