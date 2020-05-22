@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Output\Example006.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Output\Example006.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri May 22 14:12:55 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri May 22 16:42:54 2020
 <BR><P>
 <H3>Maximum Stack Usage =        176 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -11,7 +11,7 @@ main &rArr; CreateTasks &rArr; xTaskGenericCreate &rArr; prvAllocateTCBAndStack 
 <P>
 <H3>
 Mutually Recursive functions
-</H3> <LI><a href="#[63]">quickSort</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[63]">quickSort</a><BR>
+</H3> <LI><a href="#[5d]">quickSort</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[5d]">quickSort</a><BR>
  <LI><a href="#[1]">NMI_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1]">NMI_Handler</a><BR>
  <LI><a href="#[2]">HardFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[2]">HardFault_Handler</a><BR>
  <LI><a href="#[3]">MemManage_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[3]">MemManage_Handler</a><BR>
@@ -54,7 +54,7 @@ Function Pointers
  <LI><a href="#[17]">USBDC_IRQHandler</a> from startup_mps_cm3.o(.text) referenced from startup_mps_cm3.o(RESET)
  <LI><a href="#[18]">USBHC_IRQHandler</a> from startup_mps_cm3.o(.text) referenced from startup_mps_cm3.o(RESET)
  <LI><a href="#[5]">UsageFault_Handler</a> from startup_mps_cm3.o(.text) referenced from startup_mps_cm3.o(RESET)
- <LI><a href="#[23]">VTask</a> from main.o(.text) referenced from main.o(.text)
+ <LI><a href="#[23]">VTask</a> from main.o(.text) referenced 2 times from main.o(.text)
  <LI><a href="#[a]">WDT_IRQHandler</a> from startup_mps_cm3.o(.text) referenced from startup_mps_cm3.o(RESET)
  <LI><a href="#[25]">__main</a> from entry.o(.ARM.Collect$$$$00000000) referenced from startup_mps_cm3.o(.text)
  <LI><a href="#[27]">_sputc</a> from printf3.o(i._sputc) referenced from printf3.o(i.__0sprintf$3)
@@ -173,7 +173,7 @@ Global Symbols
 <LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CreateTasks
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CreateTasks
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 </UL>
@@ -206,8 +206,8 @@ Global Symbols
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListRemove
 <LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsertEnd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintString
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintString
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 <LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelayUntil
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvCheckTasksWaitingTermination
@@ -216,8 +216,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3f]"></a>vTaskSuspendAll</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, tasks.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintString
+<BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintString
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 <LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelayUntil
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvCheckTasksWaitingTermination
@@ -439,7 +439,56 @@ Global Symbols
 
 <P><STRONG><a name="[88]"></a>vPortInitialiseBlocks</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heap_2.o(.text), UNUSED)
 
-<P><STRONG><a name="[5d]"></a>CreateTasks</STRONG> (Thumb, 92 bytes, Stack size 32 bytes, main.o(.text))
+<P><STRONG><a name="[58]"></a>prioritize</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = prioritize &rArr; __2printf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
+</UL>
+
+<P><STRONG><a name="[5a]"></a>swap</STRONG> (Thumb, 42 bytes, Stack size 56 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = swap
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;partition
+</UL>
+
+<P><STRONG><a name="[5c]"></a>partition</STRONG> (Thumb, 126 bytes, Stack size 32 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = partition &rArr; swap
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;swap
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
+</UL>
+
+<P><STRONG><a name="[5d]"></a>quickSort</STRONG> (Thumb, 52 bytes, Stack size 24 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112 + In Cycle
+<LI>Call Chain = quickSort &rArr;  quickSort (Cycle)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;partition
+</UL>
+<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
+</UL>
+
+<P><STRONG><a name="[5e]"></a>admit</STRONG> (Thumb, 112 bytes, Stack size 32 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = admit &rArr; __aeabi_fadd &rArr; _float_epilogue
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
+</UL>
+<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
+</UL>
+
+<P><STRONG><a name="[67]"></a>CreateTasks</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = CreateTasks &rArr; xTaskGenericCreate &rArr; prvAllocateTCBAndStack &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
@@ -447,84 +496,38 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5e]"></a>printTasks</STRONG> (Thumb, 118 bytes, Stack size 16 bytes, main.o(.text))
+<P><STRONG><a name="[68]"></a>printTasks</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = printTasks &rArr; vPrintStringAndNumber &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[60]"></a>prioritize</STRONG> (Thumb, 96 bytes, Stack size 16 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = prioritize &rArr; __2printf
-</UL>
-<BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-</UL>
-<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[61]"></a>swap</STRONG> (Thumb, 42 bytes, Stack size 56 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = swap
-</UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
-</UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;partition
-</UL>
-
-<P><STRONG><a name="[62]"></a>partition</STRONG> (Thumb, 250 bytes, Stack size 32 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = partition &rArr; swap
-</UL>
-<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;swap
-</UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
-</UL>
-
-<P><STRONG><a name="[63]"></a>quickSort</STRONG> (Thumb, 52 bytes, Stack size 24 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112 + In Cycle
-<LI>Call Chain = quickSort &rArr;  quickSort (Cycle)
-</UL>
-<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;partition
-</UL>
-<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
-</UL>
-
-<P><STRONG><a name="[64]"></a>admit</STRONG> (Thumb, 110 bytes, Stack size 24 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = admit &rArr; __aeabi_fadd &rArr; _float_epilogue
-</UL>
-<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
-</UL>
-<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[69]"></a>InitTasks</STRONG> (Thumb, 546 bytes, Stack size 40 bytes, main.o(.text))
+<P><STRONG><a name="[69]"></a>InitTasks</STRONG> (Thumb, 540 bytes, Stack size 40 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = InitTasks &rArr; vPrintStringAndNumber &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[21]"></a>main</STRONG> (Thumb, 134 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[21]"></a>main</STRONG> (Thumb, 158 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = main &rArr; CreateTasks &rArr; xTaskGenericCreate &rArr; prvAllocateTCBAndStack &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;srand
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prioritize
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printTasks
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CreateTasks
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printTasks
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CreateTasks
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prioritize
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
@@ -535,26 +538,27 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvIdleTask
 </UL>
 
-<P><STRONG><a name="[58]"></a>vPrintString</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, basic_io.o(.text))
+<P><STRONG><a name="[63]"></a>vPrintString</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, basic_io.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = vPrintString &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspendAll
 </UL>
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VTask
 </UL>
 
-<P><STRONG><a name="[59]"></a>vPrintStringAndNumber</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, basic_io.o(.text))
+<P><STRONG><a name="[64]"></a>vPrintStringAndNumber</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, basic_io.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = vPrintStringAndNumber &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspendAll
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printTasks
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printTasks
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VTask
 </UL>
 
@@ -710,7 +714,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[5b]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;swap
+<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;swap
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
 </UL>
 
@@ -744,41 +748,41 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInitialiseTCBVariables
 </UL>
 
-<P><STRONG><a name="[66]"></a>__aeabi_fadd</STRONG> (Thumb, 164 bytes, Stack size 16 bytes, fadd.o(.text))
+<P><STRONG><a name="[60]"></a>__aeabi_fadd</STRONG> (Thumb, 164 bytes, Stack size 16 bytes, fadd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = __aeabi_fadd &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
+<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_frsub
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 </UL>
 
 <P><STRONG><a name="[75]"></a>__aeabi_fsub</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, fadd.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<BR><BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 
 <P><STRONG><a name="[76]"></a>__aeabi_frsub</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, fadd.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<BR><BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 
-<P><STRONG><a name="[65]"></a>__aeabi_i2f</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, fflti.o(.text))
+<P><STRONG><a name="[5f]"></a>__aeabi_i2f</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, fflti.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = __aeabi_i2f &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
+<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
 </UL>
 
-<P><STRONG><a name="[67]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
+<P><STRONG><a name="[61]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
 </UL>
 
 <P><STRONG><a name="[8e]"></a>__aeabi_cdcmpeq</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, cdcmple.o(.text), UNUSED)
 
-<P><STRONG><a name="[68]"></a>__aeabi_cdcmple</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, cdcmple.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
+<P><STRONG><a name="[62]"></a>__aeabi_cdcmple</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, cdcmple.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
 </UL>
 
 <P><STRONG><a name="[8f]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
@@ -790,14 +794,14 @@ Global Symbols
 <P><STRONG><a name="[90]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, iusefp.o(.text), UNUSED)
 
 <P><STRONG><a name="[74]"></a>_float_round</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, fepilogue.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 
 <P><STRONG><a name="[73]"></a>_float_epilogue</STRONG> (Thumb, 92 bytes, Stack size 4 bytes, fepilogue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = _float_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 
 <P><STRONG><a name="[29]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
@@ -814,15 +818,15 @@ Global Symbols
 
 <P><STRONG><a name="[92]"></a>__1printf$3</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3), UNUSED)
 
-<P><STRONG><a name="[5f]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3))
+<P><STRONG><a name="[59]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintString
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintString
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTasks
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prioritize
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printTasks
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printTasks
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prioritize
 </UL>
 
 <P><STRONG><a name="[7a]"></a>__0sprintf$3</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printf3.o(i.__0sprintf$3), UNUSED)
@@ -842,16 +846,16 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = free
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realloc
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realloc
 </UL>
 
-<P><STRONG><a name="[5a]"></a>malloc</STRONG> (Thumb, 64 bytes, Stack size 32 bytes, mallocr.o(i.__malloc$realloc))
+<P><STRONG><a name="[65]"></a>malloc</STRONG> (Thumb, 64 bytes, Stack size 32 bytes, mallocr.o(i.__malloc$realloc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = malloc &rArr; internal_alloc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;internal_alloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DynamicScheduler
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realloc
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realloc
 </UL>
 
 <P><STRONG><a name="[94]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
@@ -860,10 +864,10 @@ Global Symbols
 
 <P><STRONG><a name="[96]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[5c]"></a>realloc</STRONG> (Thumb, 102 bytes, Stack size 32 bytes, mallocr.o(i.realloc))
+<P><STRONG><a name="[66]"></a>realloc</STRONG> (Thumb, 102 bytes, Stack size 32 bytes, mallocr.o(i.realloc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = realloc &rArr; malloc &rArr; internal_alloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;internal_alloc
 </UL>
@@ -933,25 +937,29 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xPortStartScheduler
 </UL>
 
-<P><STRONG><a name="[23]"></a>VTask</STRONG> (Thumb, 122 bytes, Stack size 8 bytes, main.o(.text))
+<P><STRONG><a name="[23]"></a>VTask</STRONG> (Thumb, 116 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = VTask &rArr; vTaskDelayUntil &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintString
+<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintString
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCount
 <LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelayUntil
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[24]"></a>DynamicScheduler</STRONG> (Thumb, 456 bytes, Stack size 32 bytes, main.o(.text))
+<P><STRONG><a name="[24]"></a>DynamicScheduler</STRONG> (Thumb, 650 bytes, Stack size 32 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = DynamicScheduler &rArr; xTaskGenericCreate &rArr; prvAllocateTCBAndStack &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPrintStringAndNumber
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;admit
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quickSort
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prioritize
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCount
 <LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelayUntil
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realloc
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realloc
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
@@ -972,8 +980,8 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realloc
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realloc
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 <P>
 <H3>

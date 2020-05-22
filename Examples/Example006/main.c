@@ -29,13 +29,13 @@ volatile unsigned int n;
 struct task tasks[N];
 struct task *dTasks;
 void InitTasks(int);
-int admit(void);
+int admit(struct task tasks[],int n);
 void swap(struct task* a, struct task* b);
 int partition (struct task arr[], int low, int high);
 void quickSort(struct task arr[], int low, int high);
-void printTasks(struct task tasks[]);
-void prioritize(struct task tasks[]);
-void CreateTasks(struct task tasks[]);
+void printTasks(struct task tasks[],int n);
+void prioritize(struct task tasks[],int n);
+void CreateTasks(struct task tasks[],int n);
 void DynamicScheduler(struct task tasks[]);
 static void VTask(struct task* p);
 struct task* ptr;
@@ -45,26 +45,22 @@ int main( void )
 {
 	srand(256); 
 	InitTasks(1);
-	vPrintStringAndNumber("\n\nschedulability:",admit());
+	vPrintStringAndNumber("\n\nschedulability:",admit(tasks,n));
 	quickSort(tasks,0,n-1);
 	printf("\nfinished sorting");
-	printTasks(tasks);
-	prioritize(tasks);
-	printTasks(tasks);
-	
+	printTasks(tasks,n);
+	prioritize(tasks,n);
+	printTasks(tasks,n);
 	switch(1){
 		case 1:
-			CreateTasks(tasks);
+			CreateTasks(tasks,n);
 			break;
 		case 2:
 			xTaskCreate(DynamicScheduler,"D-Scheduler",100,tasks,N,&xTaskDynamicHandle);
 			break;
 		default:
 			break;
-	
 	}
-	
-	
 	vTaskStartScheduler();
 	free(ptr); 
 	for( ;; );
@@ -105,7 +101,7 @@ void InitTasks(int mode){
 }
 
 
-int admit()
+int admit(struct task tasks[],int n)
 {
 	float UCPU=0.0;
 	volatile unsigned long ul;
@@ -158,7 +154,7 @@ void quickSort(struct task arr[], int low, int high)
     }
 } 
 
-void printTasks(struct task tasks[]){
+void printTasks(struct task tasks[],int n){
 	for(int ul =0;ul<n;ul++){
 		printf("\n%s \n",tasks[ul].name);
 		vPrintStringAndNumber("TA:",tasks[ul].Ta);
@@ -168,7 +164,7 @@ void printTasks(struct task tasks[]){
 	}
 }
 
-void prioritize(struct task tasks[]){
+void prioritize(struct task tasks[],int n){
 	int count=1;
 	for(int ul=n-1;ul>0;ul--){
 		if(tasks[ul].Tp>tasks[ul-1].Tp){
@@ -193,7 +189,6 @@ static void VTask(struct task* p){
 		xLastWakeTime = 0;
 		p->running =1;
 	}
-
 	for(;;){
 		vPrintString(Taskname);
 		vPrintStringAndNumber(" starts running at ",xTaskGetTickCount());
@@ -211,7 +206,7 @@ static void VTask(struct task* p){
 	}
 }
 
-void CreateTasks(struct task tasks[]){
+void CreateTasks(struct task tasks[],int n){
 	//xTaskCreate(DynamicScheduler,"D-Scheduler",100,tasks,1,&xTaskDynamicHandle);
 	for(int ul=n-1;ul>=0;ul--){
 		xTaskCreate(VTask,tasks[ul].name,50,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
@@ -232,19 +227,28 @@ static void DynamicScheduler(struct task tasks[]){
 		for( ul = 0; ul <n; ul++ )
 		{
 			if(tasks[ul].running==0 && tasks[ul].Ta <= xTaskGetTickCount()){
-				if (ptr == NULL){
+				if(ptr == NULL){
 					ptr = (struct task*)malloc((++activeTasks)*sizeof(struct task));
 					tasks[ul].running=1;
-					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
+					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
 					ptr[activeTasks-1] = tasks[ul];
 					delay = tasks[ul].Tc;
+					vPrintStringAndNumber("\n\nschedulability:",admit(ptr,activeTasks));
+					quickSort(ptr,0,activeTasks-1);
+					prioritize(ptr,activeTasks);
+					//printTasks(ptr,activeTasks);
+				  
 				} 
 				else{
 					ptr = realloc(ptr, (++activeTasks) * sizeof(struct task)); 
 					tasks[ul].running=1;
-					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
+					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
 					ptr[activeTasks-1] = tasks[ul];
 					delay = tasks[ul].Tc;
+					vPrintStringAndNumber("\n\nschedulability:",admit(ptr,activeTasks));
+					quickSort(ptr,0,activeTasks-1);
+					prioritize(ptr,activeTasks);
+					//printTasks(ptr,activeTasks);
 				} 
 		}
 		}
