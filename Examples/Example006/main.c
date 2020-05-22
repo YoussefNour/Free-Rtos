@@ -51,7 +51,7 @@ int main( void )
 	printTasks(tasks,n);
 	prioritize(tasks,n);
 	printTasks(tasks,n);
-	switch(1){
+	switch(2){
 		case 1:
 			CreateTasks(tasks,n);
 			break;
@@ -67,7 +67,9 @@ int main( void )
 }
 
 void vApplicationIdleHook(){
-	for(;;);
+	for(;;){
+		//vPrintStringAndNumber("ticks: ",xTaskGetTickCount());
+	}
 }
 
 
@@ -236,8 +238,7 @@ static void DynamicScheduler(struct task tasks[]){
 					vPrintStringAndNumber("\n\nschedulability:",admit(ptr,activeTasks));
 					quickSort(ptr,0,activeTasks-1);
 					prioritize(ptr,activeTasks);
-					//printTasks(ptr,activeTasks);
-				  
+					printTasks(ptr,activeTasks);
 				} 
 				else{
 					ptr = realloc(ptr, (++activeTasks) * sizeof(struct task)); 
@@ -248,11 +249,11 @@ static void DynamicScheduler(struct task tasks[]){
 					vPrintStringAndNumber("\n\nschedulability:",admit(ptr,activeTasks));
 					quickSort(ptr,0,activeTasks-1);
 					prioritize(ptr,activeTasks);
-					//printTasks(ptr,activeTasks);
+					printTasks(ptr,activeTasks);
 				} 
 		}
 		}
-		vTaskDelayUntil(&xLastWakeTime,delay);
+		vTaskDelayUntil(&xLastWakeTime,1);
 	}
 	
 }
