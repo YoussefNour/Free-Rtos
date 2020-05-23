@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.29.0.0
 Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Youssef Ossama, AinShams, LIC=----
+License Information: Omar Samak, ASU, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.29.0.0
@@ -21,41 +21,41 @@ Target DLL:      UL2CM3.DLL V1.163.0.0
 Dialog DLL:      TLM.DLL V1.24.0.0
  
 <h2>Project:</h2>
-D:\College\8. semester 8\CSE 345 Real-Time & Embedded Sys\Final Project\FreeRtos\Free-Rtos\Examples\Example006\Example006.uvproj
-Project File Date:  05/22/2020
+E:\College\Semester 8\Real Time\Projects\New folder (2)\Free-Rtos\Examples\Example006\Example006.uvproj
+Project File Date:  05/23/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Source'
-compiling queue.c...
-assembling startup_MPS_CM3.s...
 compiling list.c...
-compiling basic_io.c...
 compiling heap_2.c...
+compiling basic_io.c...
+compiling queue.c...
 compiling tasks.c...
 compiling main.c...
-main.c(59): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
+main.c(65): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
   			xTaskCreate(DynamicScheduler,"D-Scheduler",100,tasks,N,&xTaskDynamicHandle);
-main.c(77): warning:  #177-D: variable "arr"  was declared but never referenced
+main.c(83): warning:  #177-D: variable "arr"  was declared but never referenced
   	char arr[2] = "4";
-main.c(213): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
+main.c(219): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
   		xTaskCreate(VTask,tasks[ul].name,50,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
-main.c(213): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
+main.c(219): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
   		xTaskCreate(VTask,tasks[ul].name,50,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
-main.c(236): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
+main.c(242): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
   					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
-main.c(236): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
+main.c(242): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
   					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
-main.c(247): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
+main.c(253): warning:  #167-D: argument of type "void (*)(struct task *)" is incompatible with parameter of type "pdTASK_CODE"
   					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
-main.c(247): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
+main.c(253): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const signed char *const"
   					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
 main.c: 8 warnings, 0 errors
 compiling port.c...
+assembling startup_MPS_CM3.s...
 linking...
-Program Size: Code=7476 RO-data=224 RW-data=116 ZI-data=12220  
+Program Size: Code=7564 RO-data=224 RW-data=116 ZI-data=12220  
 ".\Output\Example006.axf" - 0 Error(s), 8 Warning(s).
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

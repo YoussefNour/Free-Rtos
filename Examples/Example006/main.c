@@ -43,7 +43,13 @@ xTaskHandle xTaskDynamicHandle;
 
 int main( void )
 {
-	srand(256); 
+	char time[]=(__TIME__);
+	int t = time[strlen(time)-2]-'0';
+	t*=10;
+	t += time[strlen(time)-1]-'0';
+	printf("%d\n",(t));
+	srand(t); 
+	//srand(256); 
 	InitTasks(1);
 	vPrintStringAndNumber("\n\nschedulability:",admit(tasks,n));
 	quickSort(tasks,0,n-1);
@@ -51,7 +57,7 @@ int main( void )
 	printTasks(tasks,n);
 	prioritize(tasks,n);
 	printTasks(tasks,n);
-	switch(2){
+	switch(1){
 		case 1:
 			CreateTasks(tasks,n);
 			break;
