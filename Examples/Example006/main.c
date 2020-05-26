@@ -47,21 +47,26 @@ int main( void )
 	int t = time[strlen(time)-2]-'0';
 	t*=10;
 	t += time[strlen(time)-1]-'0';
-	printf("%d\n",(t));
-	srand(t); 
-	//srand(256); 
+	//srand(t); 
+	srand(256); 
 	InitTasks(1);
-	vPrintStringAndNumber("\n\nschedulability:",admit(tasks,n));
-	quickSort(tasks,0,n-1);
-	printf("\nfinished sorting");
-	printTasks(tasks,n);
-	prioritize(tasks,n);
-	printTasks(tasks,n);
-	switch(1){
+	
+	switch(1){   //  1: Static Scheduler                2: Dynamic Scheduler
 		case 1:
+			if(admit(tasks,n) == 0 ) return 0;
+			quickSort(tasks,0,n-1);
+			printf("\nSorting the Tasks\n");
+			printTasks(tasks,n);
+			printf("\nfinished sorting\n");
+			printf("\nPrioritizing the Tasks\n");
+			prioritize(tasks,n);
+			printTasks(tasks,n);
+		  printf("\n\nTasks have been prioritized\n");
 			CreateTasks(tasks,n);
 			break;
 		case 2:
+			quickSort(tasks,0,n-1);
+			prioritize(tasks,n);
 			xTaskCreate(DynamicScheduler,"D-Scheduler",100,tasks,N,&xTaskDynamicHandle);
 			break;
 		default:
@@ -72,8 +77,13 @@ int main( void )
 }
 
 void vApplicationIdleHook(){
+	portTickType temp;
 	for(;;){
-		//vPrintStringAndNumber("ticks: ",xTaskGetTickCount());
+					vPrintString("\n");
+					vPrintStringAndNumber("Idle State at ",xTaskGetTickCount());
+					vPrintString("\n");
+          temp = xTaskGetTickCount();
+          while(temp==xTaskGetTickCount());
 	}
 }
 
@@ -83,6 +93,7 @@ void InitTasks(int mode){
 	char arr[2] = "4";
 	xTaskHandle xTaskHandleArr[N];
 	volatile unsigned int ul;
+	vPrintString("Tasks waiting to be processed by our scheduler:");
 	for( ul = 0; ul <n; ul++ )
 		{
 			tasks[ul].handler = xTaskHandleArr[ul];
@@ -114,11 +125,13 @@ int admit(struct task tasks[],int n)
 	volatile unsigned long ul;
 	for(ul = 0; ul <n; ul++ )
 	{
-		UCPU+=tasks[ul].Tc/tasks[ul].Tp;
+		UCPU+=  (float)tasks[ul].Tc/(float)tasks[ul].Tp;
 	}
+	printf("\n\nCPU Utilization: %0.2f\n",UCPU);
 	if(UCPU<0.7){
 		return 1;
 	}else return 0;
+	
 }
 
 void swap(struct task* a, struct task* b) 
@@ -181,7 +194,7 @@ void prioritize(struct task tasks[],int n){
 		}
 	}
 	tasks[0].P = count;
-	printf("\n\nTasks have been prioritized\n");
+	//printf("\n\nTasks have been prioritized\n");
 }
 
 static void VTask(struct task* p){
@@ -197,11 +210,16 @@ static void VTask(struct task* p){
 		p->running =1;
 	}
 	for(;;){
+		vPrintString("\n");
 		vPrintString(Taskname);
 		vPrintStringAndNumber(" starts running at ",xTaskGetTickCount());
 		vPrintString("\n");
 		oldtick = 0;
     while(oldtick < p->Tc){
+					vPrintString("\n");
+					vPrintString(Taskname);
+					vPrintStringAndNumber(" is running at ",xTaskGetTickCount());
+					vPrintString("\n");
           oldtick++;
           temp = xTaskGetTickCount();
           while(temp==xTaskGetTickCount());
@@ -214,8 +232,11 @@ static void VTask(struct task* p){
 }
 
 void CreateTasks(struct task tasks[],int n){
-	//xTaskCreate(DynamicScheduler,"D-Scheduler",100,tasks,1,&xTaskDynamicHandle);
+	vPrintString("\n----------  Static Scheduler ----------\n\n");
 	for(int ul=n-1;ul>=0;ul--){
+		vPrintString("\n");
+		vPrintString(tasks[ul].name);
+		vPrintStringAndNumber(" is created at \n",xTaskGetTickCount());
 		xTaskCreate(VTask,tasks[ul].name,50,&tasks[ul],tasks[ul].P+1,&tasks[ul].handler);
 	}
 	
@@ -226,10 +247,12 @@ static void DynamicScheduler(struct task tasks[]){
 	//looping on static array
 	volatile unsigned int ul;
 	volatile unsigned int activeTasks=0;
-	portTickType xLastWakeTime;
+	portTickType xLastWakeTime= xTaskGetTickCount();
 	volatile unsigned int delay=0;	
 	int willdelete;
 	int tasktodelete;
+	
+	vPrintString("\n----------  Dynamic Scheduler ----------\n\n");
 	
 	for(;;){
 		// creation for loop
@@ -237,53 +260,50 @@ static void DynamicScheduler(struct task tasks[]){
 		{
 			if(tasks[ul].running==0 && tasks[ul].Ta <= xTaskGetTickCount()){
 				if(ptr == NULL){
-					ptr = (struct task*)malloc((++activeTasks)*sizeof(struct task));
-					tasks[ul].running=1;
-					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
-					ptr[activeTasks-1] = tasks[ul];
-					delay = tasks[ul].Tc;
-					vPrintStringAndNumber("\n\nschedulability:",admit(ptr,activeTasks));
-					quickSort(ptr,0,activeTasks-1);
-					prioritize(ptr,activeTasks);
-					printTasks(ptr,activeTasks);
+					ptr = (struct task*)malloc((++activeTasks)*sizeof(struct task));		
 				} 
 				else{
 					ptr = realloc(ptr, (++activeTasks) * sizeof(struct task)); 
-					tasks[ul].running=1;
+				}
+				tasks[ul].running=1;
+					vPrintString("\n");
+					vPrintString(tasks[ul].name);
+					vPrintStringAndNumber(" is created at ",xTaskGetTickCount());
 					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
 					ptr[activeTasks-1] = tasks[ul];
 					delay = tasks[ul].Tc;
-					vPrintStringAndNumber("\n\nschedulability:",admit(ptr,activeTasks));
+					if(admit(ptr,activeTasks) == 0 ) return;
 					quickSort(ptr,0,activeTasks-1);
 					prioritize(ptr,activeTasks);
 					printTasks(ptr,activeTasks);
-				}
 			}
 		}
 		if(xTaskGetTickCount()>=60){
 			willdelete = rand()%2;
-					if(willdelete){
-						tasktodelete = rand()%(--activeTasks);
-						vTaskDelete(ptr[tasktodelete].handler);
-						vPrintString(ptr[tasktodelete].name);
-						vPrintString(" is deleted\n");
-						swap(&ptr[tasktodelete],&ptr[activeTasks]);
-						ptr = realloc(ptr, (activeTasks) * sizeof(struct task)); 
-						vPrintStringAndNumber("\n\nschedulability:",admit(ptr,activeTasks));
-						quickSort(ptr,0,activeTasks-1);
-						prioritize(ptr,activeTasks);
-						printTasks(ptr,activeTasks);
-					}else{
-						vPrintString("\nwill not delete this round\n");
-					}
-					if(activeTasks == 1){
+			if(activeTasks == 1){
 						vTaskDelete(ptr[0].handler);
 						vPrintString(ptr[0].name);
-						vPrintString(" is deleted and the simulation is done\n");
+						vPrintStringAndNumber(" is deleted at ",xTaskGetTickCount());
+						vPrintString("\nThe Simulation is done \n");
 						free(ptr);
 						vTaskDelete(xTaskDynamicHandle);
 					}
+				else if(willdelete){
+						tasktodelete = rand()%(--activeTasks);
+						vTaskDelete(ptr[tasktodelete].handler);
+						vPrintString(ptr[tasktodelete].name);
+						vPrintStringAndNumber(" is deleted at ",xTaskGetTickCount());
+						vPrintString("\n");
+						swap(&ptr[tasktodelete],&ptr[activeTasks]);
+						ptr = realloc(ptr, (activeTasks) * sizeof(struct task)); 
+						if(admit(ptr,activeTasks) == 0 ) return;
+						quickSort(ptr,0,activeTasks-1);
+						prioritize(ptr,activeTasks);
+						printTasks(ptr,activeTasks);
+					}
+					
 		}
+		xLastWakeTime= xTaskGetTickCount();
 		vTaskDelayUntil(&xLastWakeTime,1);
 	}
 }
