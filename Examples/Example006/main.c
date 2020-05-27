@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdio.h>
 
-
+//enviroment variables
 #define N 5
 #define tst 1
 #define latest_arrival_time 15
@@ -25,7 +25,13 @@ struct task{
 	int running;
 };
 
+//global Variables
 volatile unsigned int n;
+struct task* ptr;
+xTaskHandle xTaskDynamicHandle;
+int prioritymode=0;
+
+//prototypes
 struct task tasks[N];
 struct task *dTasks;
 void InitTasks(int);
@@ -38,8 +44,6 @@ void prioritize(struct task tasks[],int n);
 void CreateTasks(struct task tasks[],int n);
 void DynamicScheduler(struct task tasks[]);
 static void VTask(struct task* p);
-struct task* ptr;
-xTaskHandle xTaskDynamicHandle;
 
 int main( void )
 {
@@ -63,12 +67,14 @@ int main( void )
 			printTasks(tasks,n);
 		  printf("\n\nTasks have been prioritized\n");
 			CreateTasks(tasks,n);
+			prioritymode =1;
 			break;
+		
 		case 2:
-			quickSort(tasks,0,n-1);
-			prioritize(tasks,n);
 			xTaskCreate(DynamicScheduler,"D-Scheduler",100,tasks,N,&xTaskDynamicHandle);
+			prioritymode = 2;
 			break;
+		
 		default:
 			break;
 	}
@@ -79,11 +85,11 @@ int main( void )
 void vApplicationIdleHook(){
 	portTickType temp;
 	for(;;){
-					vPrintString("\n");
-					vPrintStringAndNumber("Idle State at ",xTaskGetTickCount());
-					vPrintString("\n");
-          temp = xTaskGetTickCount();
-          while(temp==xTaskGetTickCount());
+		vPrintString("\n");
+		vPrintStringAndNumber("Idle State at ",xTaskGetTickCount());
+		vPrintString("\n");
+		temp = xTaskGetTickCount();
+		while(temp==xTaskGetTickCount());
 	}
 }
 
@@ -115,6 +121,7 @@ void InitTasks(int mode){
 			vPrintStringAndNumber("Tc:",tasks[ul].Tc);
 			tasks[ul].running = 0;
 			printf("Tp: %d ",tasks[ul].Tp);
+			tasks[ul].P = 0;
 		}
 }
 
@@ -181,19 +188,24 @@ void printTasks(struct task tasks[],int n){
 		vPrintStringAndNumber("Tc:",tasks[ul].Tc);
 		printf("Tp: %d ",tasks[ul].Tp);
 		printf("\nPriority: %d\n",tasks[ul].P);
+		//vPrintString(tasks[ul].name);
+		//vPrintStringAndNumber(" has RTOS Priority",uxTaskPriorityGet(tasks[ul].handler));
+		//vPrintString("\n");
 	}
 }
 
 void prioritize(struct task tasks[],int n){
 	int count=1;
-	for(int ul=n-1;ul>0;ul--){
+	for(int ul=n-1;ul>=0;ul--){
 		if(tasks[ul].Tp>tasks[ul-1].Tp){
 			tasks[ul].P=count++;
 		}else{
 			tasks[ul].P=count;
 		}
+		if(prioritymode==2){
+			vTaskPrioritySet(tasks[ul].handler,tasks[ul].P);
+		}
 	}
-	tasks[0].P = count;
 	//printf("\n\nTasks have been prioritized\n");
 }
 
@@ -271,7 +283,6 @@ static void DynamicScheduler(struct task tasks[]){
 					vPrintStringAndNumber(" is created at ",xTaskGetTickCount());
 					xTaskCreate(VTask,tasks[ul].name,100,&tasks[ul],tasks[ul].P,&tasks[ul].handler);
 					ptr[activeTasks-1] = tasks[ul];
-					delay = tasks[ul].Tc;
 					if(admit(ptr,activeTasks) == 0 ) return;
 					quickSort(ptr,0,activeTasks-1);
 					prioritize(ptr,activeTasks);
